@@ -14,6 +14,7 @@ export const getWidgets = (res) => {
 };
 
 export const addWidgets = (info) => {
+    console.log("addWidget client API hit: ", info)
   return axios({
     method: "POST",
     url: `http://localhost:8000/Widgets`,

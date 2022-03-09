@@ -1,11 +1,13 @@
 import axios from "axios";
 
 export const getWidgets = (res) => {
+    console.log("getWidgets client API called")
   return axios({
     method: "GET",
-    url: "http://localhost:8000/FaveWidgets",
+    url: "http://localhost:8000/Widgets",
   })
     .then((res) => {
+        console.log("This is the res: ", res)
       return res;
     })
     .catch((error) => console.log(error));
@@ -17,12 +19,12 @@ export const addWidgets = (info) => {
     url: `http://localhost:8000/Widgets`,
     data: {
       info: {
-        name: req.body.info.name,
-        type: req.body.info.type,
-        quantity: req.body.info.quantity,
-        cost: req.body.info.cost,
-        manufacturer: req.body.info.manufacturer,
-        notes: req.body.info.notes,
+        name: info.name,
+        type: info.type,
+        quantity: info.quantity,
+        cost: info.cost,
+        manufacturer: info.manufacturer,
+        notes: info.notes,
       },
     },
   });
@@ -34,12 +36,12 @@ export const editWidget = (info, id) => {
     url: `http://localhost:8000/Widgets/${id}`,
     data: {
       info: {
-        name: req.body.info.name,
-        type: req.body.info.type,
-        quantity: req.body.info.quantity,
-        cost: req.body.info.cost,
-        manufacturer: req.body.info.manufacturer,
-        notes: req.body.info.notes,
+        name: info.name,
+        type: info.type,
+        quantity: info.quantity,
+        cost: info.cost,
+        manufacturer: info.manufacturer,
+        notes: info.notes,
       },
     },
   });
@@ -47,7 +49,7 @@ export const editWidget = (info, id) => {
 
 export const deleteWidgets = (id) => {
   return axios({
-    url: `http://localhost:8000/FaveWidgets/${id}`,
+    url: `http://localhost:8000/Widgets/${id}`,
     method: "DELETE",
   });
 };

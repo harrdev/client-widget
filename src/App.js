@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Widgets from "./components/Widgets";
 import ShowWidget from "./components/ShowWidget";
-// import { getWidgets } from "./api/widgets";
+const database = "http://localhost:8000/Widgets";
 
 function App() {
   const [widget, setWidget] = useState([]);
@@ -13,8 +13,10 @@ function App() {
     getAllWidgets();
   }, []);
 
+  // API call to database to get all saved widgets and save to widget state to pass to children
   const getAllWidgets = () => {
-    axios.get("http://localhost:8000/Widgets").then((res) => {
+    console.log("App.js getAllWidgets called")
+    axios.get(database).then((res) => {
       let widgetArray = [];
       res.data.widget.map((w) => {
         widgetArray.push(w);

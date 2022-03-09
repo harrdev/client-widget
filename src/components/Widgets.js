@@ -1,22 +1,46 @@
 import { Link } from "react-router-dom";
 import AddWidget from "./AddWidget";
-import { getWidgets } from "../api/widgets";
+import { getWidgets, deleteWidget } from "../api/widgets";
 import { useEffect, useState } from "react";
 
 const Widgets = ({ widgets }) => {
-  const [allSavedWidgets, setAllSavedWidgets] = useState([]);
+  const [allWidgets, setAllWidgets] = useState([]);
 
+  // useEffect(() => {
+  //   getWidgets().then((res) => {
+  //     let widgetArray = [];
+  //     res.data.widget.map((widget) => {
+  //       return widgetArray.push(widget);
+  //     });
+  //     setAllWidgets(widgetArray);
+  //   });
+  // }, []);
+
+  console.log("Widgets: ", widgets);
   useEffect(() => {
-    getWidgets().then((res) => {
-      let widgetArray = [];
-      res.data.widget.map((widget) => {
-        return widgetArray.push(widget);
-      });
-      setAllSavedWidgets(widgetArray);
+    let widgetArray = [];
+    widgets.map((widget) => {
+      return widgetArray.push(widget);
     });
-  }, []);
+    setAllWidgets(widgetArray);
+  }, [widgets]);
 
-  const allWidgets = widgets.map((widget, i) => {
+  const removeWidget = (widget) => {
+    deleteWidget(widget._id).then((res) => {
+      getWidgets()
+        .then((res) => {
+          let widgetsArray = [];
+          res.data.widget.map((widget) => {
+            return widgetsArray.push(widget);
+          });
+          setAllWidgets(widgetsArray);
+          alert("Widget Deleted!");
+        })
+        .catch((error) => {});
+    });
+  };
+
+  const showAllWidgets = allWidgets.map((widget, i) => {
     return (
       <li key={i}>
         <div>
@@ -26,6 +50,11 @@ const Widgets = ({ widgets }) => {
           >
             {widget.name}
           </Link>
+          <div className="widgetRemoveButton">
+        <button className="removeButton" onClick={() => removeWidget(widget)}>
+          Delete Widget
+        </button>
+      </div>
         </div>
       </li>
     );
@@ -38,7 +67,7 @@ const Widgets = ({ widgets }) => {
         <AddWidget />
       </div>
       <div className="allWidgets">
-        <ul>{allWidgets}</ul>
+        <ul>{showAllWidgets}</ul>
       </div>
     </div>
   );

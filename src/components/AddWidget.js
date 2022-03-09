@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addWidgets } from "../api/widgets";
+import { addWidget } from "../api/widgets";
 
 const AddWidget = (props) => {
   const [inputs, setInputs] = useState({});
@@ -12,7 +12,7 @@ const AddWidget = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addWidgets(inputs);
+    addWidget(inputs);
     alert("Widget added to your favorites");
   };
 

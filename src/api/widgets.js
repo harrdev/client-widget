@@ -1,20 +1,19 @@
 import axios from "axios";
 
 export const getWidgets = (res) => {
-    console.log("getWidgets client API called")
+  console.log("getWidgets client API called");
   return axios({
     method: "GET",
     url: "http://localhost:8000/Widgets",
   })
     .then((res) => {
-        console.log("This is the res: ", res)
       return res;
     })
     .catch((error) => console.log(error));
 };
 
-export const addWidgets = (info) => {
-    console.log("addWidget client API hit: ", info)
+export const addWidget = (info) => {
+  console.log("addWidget client API hit: ", info);
   return axios({
     method: "POST",
     url: `http://localhost:8000/Widgets`,
@@ -48,7 +47,7 @@ export const editWidget = (info, id) => {
   });
 };
 
-export const deleteWidgets = (id) => {
+export const deleteWidget = (id) => {
   return axios({
     url: `http://localhost:8000/Widgets/${id}`,
     method: "DELETE",

@@ -3,6 +3,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Widgets from "./components/Widgets";
+import ShowWidget from "./components/ShowWidget";
 // import { getWidgets } from "./api/widgets";
 
 function App() {
@@ -14,7 +15,6 @@ function App() {
 
   const getAllWidgets = () => {
     axios.get("http://localhost:8000/Widgets").then((res) => {
-      console.log("Here are the widgets: ", res);
       let widgetArray = [];
       res.data.widget.map((w) => {
         widgetArray.push(w);
@@ -23,7 +23,14 @@ function App() {
     });
   };
 
-  return <Widgets widgets={widget} />;
+  return (
+    <Fragment>
+      <Routes>
+        <Route path="/" element={<Widgets widgets={widget} />} />
+        <Route path="/:id" element={<ShowWidget widgets={widget} />} />
+      </Routes>
+    </Fragment>
+  );
 }
 
 export default App;

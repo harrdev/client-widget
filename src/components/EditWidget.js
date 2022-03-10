@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { addWidget } from "../api/widgets";
+import { editWidget } from "../api/widgets";
 
-const AddWidget = (props) => {
-    console.log("addwidget props: ", props)
+const EditWidget = (props) => {
   const [inputs, setInputs] = useState({});
+  const id = props.widget._id;
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -13,18 +13,18 @@ const AddWidget = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addWidget(inputs);
-    alert("Widget added to your favorites");
+    editWidget(inputs, id);
+    alert("Widget Updated!");
   };
 
   return (
-    <div className="addForm">
+    <div className="editForm">
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
           className="input"
           type="text"
-          id="name"
+          value={inputs.name}
           name="name"
           onChange={handleChange}
         />
@@ -34,7 +34,7 @@ const AddWidget = (props) => {
         <input
           className="input"
           type="text"
-          id="type"
+          value={inputs.type}
           name="type"
           onChange={handleChange}
         />
@@ -44,7 +44,7 @@ const AddWidget = (props) => {
         <input
           className="input"
           type="number"
-          id="quantity"
+          value={inputs.quantity}
           name="quantity"
           onChange={handleChange}
         />
@@ -54,7 +54,7 @@ const AddWidget = (props) => {
         <input
           className="input"
           type="text"
-          id="cost"
+          value={inputs.cost}
           name="cost"
           onChange={handleChange}
         />
@@ -64,7 +64,7 @@ const AddWidget = (props) => {
         <input
           className="input"
           type="text"
-          id="manufacturer"
+          value={inputs.manufacturer}
           name="manufacturer"
           onChange={handleChange}
         />
@@ -74,16 +74,16 @@ const AddWidget = (props) => {
         <textarea
           className="input"
           type="text"
-          id="notes"
+          value={inputs.notes}
           name="notes"
           onChange={handleChange}
         />
         <br />
 
-        <input onClick={props.addClick} type="submit" value="Add a Widget" />
+        <input type="submit" value="Edit Widget" />
       </form>
     </div>
   );
 };
 
-export default AddWidget;
+export default EditWidget;

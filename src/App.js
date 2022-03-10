@@ -8,6 +8,7 @@ const database = "http://localhost:8000/Widgets";
 
 function App() {
   const [widget, setWidget] = useState([]);
+  const [addButtonClick, setAddButtonClick] = useState(false);
 
   useEffect(() => {
     getAllWidgets();
@@ -15,7 +16,7 @@ function App() {
 
   // API call to database to get all saved widgets and save to widget state to pass to children
   const getAllWidgets = () => {
-    console.log("App.js getAllWidgets called")
+    console.log("App.js getAllWidgets called");
     axios.get(database).then((res) => {
       let widgetArray = [];
       res.data.widget.map((w) => {
@@ -25,10 +26,29 @@ function App() {
     });
   };
 
+  const addClick = () => {
+    if (!addButtonClick) {
+      console.log("addClick fired")
+      setAddButtonClick(true);
+    } else {
+      setAddButtonClick(false);
+    }
+  };
+
   return (
     <Fragment>
       <Routes>
-        <Route path="/" element={<Widgets widgets={widget} />} />
+        <Route
+          path="/"
+          element={
+            <Widgets
+              widgets={widget}
+              addClick={addClick}
+              addButtonClick={addButtonClick}
+              setAddButtonClick={setAddButtonClick}
+            />
+          }
+        />
         <Route path="/:id" element={<ShowWidget widgets={widget} />} />
       </Routes>
     </Fragment>

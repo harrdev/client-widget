@@ -3,20 +3,10 @@ import AddWidget from "./AddWidget";
 import { getWidgets, deleteWidget } from "../api/widgets";
 import { useEffect, useState } from "react";
 
-const Widgets = ({ widgets }) => {
+const Widgets = (props) => {
+  const { widgets } = props;
   const [allWidgets, setAllWidgets] = useState([]);
 
-  // useEffect(() => {
-  //   getWidgets().then((res) => {
-  //     let widgetArray = [];
-  //     res.data.widget.map((widget) => {
-  //       return widgetArray.push(widget);
-  //     });
-  //     setAllWidgets(widgetArray);
-  //   });
-  // }, []);
-
-  console.log("Widgets: ", widgets);
   useEffect(() => {
     let widgetArray = [];
     widgets.map((widget) => {
@@ -24,7 +14,7 @@ const Widgets = ({ widgets }) => {
     });
     setAllWidgets(widgetArray);
   }, [widgets]);
-
+  // Remove Widget function that updates allWidgets state upon deletion
   const removeWidget = (widget) => {
     deleteWidget(widget._id).then((res) => {
       getWidgets()
@@ -51,10 +41,13 @@ const Widgets = ({ widgets }) => {
             {widget.name}
           </Link>
           <div className="widgetRemoveButton">
-        <button className="removeButton" onClick={() => removeWidget(widget)}>
-          Delete Widget
-        </button>
-      </div>
+            <button
+              className="removeButton"
+              onClick={() => removeWidget(widget)}
+            >
+              Delete Widget
+            </button>
+          </div>
         </div>
       </li>
     );
@@ -64,7 +57,7 @@ const Widgets = ({ widgets }) => {
     <div className="container">
       <h1>Widgets Component</h1>
       <div className="addWidget">
-        <AddWidget />
+        <AddWidget props={props} />
       </div>
       <div className="allWidgets">
         <ul>{showAllWidgets}</ul>

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import EditWidget from "../components/EditWidget"
 
 const WidgetDetails = ({ widgets }) => {
   const thisWidget = useParams();
@@ -8,6 +9,10 @@ const WidgetDetails = ({ widgets }) => {
 
   return (
     <div className="container">
+      <div className="editForm">
+        <h2>Edit Film</h2>
+        <EditWidget widget={w} />
+      </div>
       <p>Name: {w.name}</p>
       <p>Type: {w.type}</p>
       <p>Quantity: {w.quantity}</p>

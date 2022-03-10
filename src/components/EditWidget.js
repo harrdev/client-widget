@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { editWidget } from "../api/widgets";
+import { useNavigate } from "react-router-dom";
 
 const EditWidget = (props) => {
   const [inputs, setInputs] = useState({});
+  // id to pass to patch API call
   const id = props.widget._id;
-
-  console.log("inputs is: ", inputs);
-  console.log("Props.widget is: ", props.widget);
-  
-  useEffect(() => {
-    setInputs(props.widget);
-  }, []);
+  let navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -22,6 +18,7 @@ const EditWidget = (props) => {
     event.preventDefault();
     editWidget(inputs, id);
     alert("Widget Updated!");
+    navigate("/");
   };
 
   return (

@@ -44,6 +44,7 @@ export const editWidget = (info, id) => {
         quantity: info.quantity,
         cost: info.cost,
         manufacturer: info.manufacturer,
+        madeAt: info.madeAt,
         notes: info.notes,
       },
     },

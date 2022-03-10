@@ -10,7 +10,7 @@ const WidgetDetails = ({ widgets }) => {
   return (
     <div className="container">
       <div className="editForm">
-        <h2>Edit Film</h2>
+        <h2>Edit Widget</h2>
         <EditWidget widget={w} />
       </div>
       <p>Name: {w.name}</p>

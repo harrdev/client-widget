@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { editWidget } from "../api/widgets";
 
 const EditWidget = (props) => {
   const [inputs, setInputs] = useState({});
   const id = props.widget._id;
+  // The following propArray and useEffect is an attempt to avoid the uncontrolled change of input error.  Work in progress
+  const propArray = [];
+  propArray.push(props.widget);
+
+  useEffect(() => {
+    setInputs(propArray[0]);
+  }, []);
 
   const handleChange = (event) => {
     const name = event.target.name;

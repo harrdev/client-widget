@@ -25,7 +25,7 @@ function App() {
       setWidget(widgetArray);
     });
   };
-
+  // Work in progress, logic to show/hide edit/add buttons
   const addClick = () => {
     if (!addButtonClick) {
       console.log("addClick fired")

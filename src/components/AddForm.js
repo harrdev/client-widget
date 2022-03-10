@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { addWidget } from "../api/widgets";
+import { Editor } from "@tinymce/tinymce-react";
 
-const AddWidget = (props) => {
-  console.log("addwidget props: ", props);
+const AddForm = (props) => {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleText = (event) => {
+    const value = event;
+    setInputs({ notes: value });
   };
 
   const handleSubmit = (event) => {
@@ -28,12 +33,19 @@ const AddWidget = (props) => {
           type="text"
           id="name"
           name="name"
+          required
           onChange={handleChange}
         />
         <br />
 
         <label htmlFor="type">Choose a Type:</label>
-        <select className="input" name="type" id="type" onChange={handleChange}>
+        <select
+          className="input"
+          name="type"
+          id="type"
+          required
+          onChange={handleChange}
+        >
           <option>Select a Type from dropdown</option>
           <option value="CPU">CPU</option>
           <option value="Motherboard">Motherboard</option>
@@ -48,6 +60,7 @@ const AddWidget = (props) => {
           type="number"
           id="quantity"
           name="quantity"
+          required
           onChange={handleChange}
         />
         <br />
@@ -58,6 +71,7 @@ const AddWidget = (props) => {
           type="text"
           id="cost"
           name="cost"
+          required
           onChange={handleChange}
         />
         <br />
@@ -68,6 +82,7 @@ const AddWidget = (props) => {
           type="text"
           id="manufacturer"
           name="manufacturer"
+          required
           onChange={handleChange}
         />
         <br />
@@ -78,19 +93,25 @@ const AddWidget = (props) => {
           type="datetime-local"
           id="madeAt"
           name="madeAt"
+          required
           onChange={handleChange}
         />
         <br />
 
         <label htmlFor="notes">Notes</label>
-        <textarea
-          className="input"
+        <Editor
           type="text"
           id="notes"
           name="notes"
-          onChange={handleChange}
+          required
+          value={inputs.notes}
+          init={{
+            height: 200,
+            width: 400,
+            menubar: false,
+          }}
+          onEditorChange={handleText}
         />
-        <br />
 
         <input type="submit" value="Add a Widget" />
       </form>
@@ -98,4 +119,4 @@ const AddWidget = (props) => {
   );
 };
 
-export default AddWidget;
+export default AddForm;

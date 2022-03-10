@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import AddWidget from "./AddWidget";
+import AddWidget from "./archive/AddWidget";
 import { getWidgets, deleteWidget } from "../api/widgets";
 import { useEffect, useState } from "react";
+import AddForm from "./AddForm";
 
 const Widgets = (props) => {
   const { widgets } = props;
@@ -58,7 +59,8 @@ const Widgets = (props) => {
     <div className="container">
       <h1>Widgets Component</h1>
       <div className="addWidget">
-        <AddWidget props={props} />
+        {/* <AddWidget props={props} /> */}
+        <AddForm props={props} />
       </div>
       <div className="allWidgets">
         <ul>{showAllWidgets}</ul>

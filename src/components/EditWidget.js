@@ -4,12 +4,12 @@ import { editWidget } from "../api/widgets";
 const EditWidget = (props) => {
   const [inputs, setInputs] = useState({});
   const id = props.widget._id;
-  // The following propArray and useEffect is an attempt to avoid the uncontrolled change of input error.  Work in progress
-  const propArray = [];
-  propArray.push(props.widget);
 
+  console.log("inputs is: ", inputs);
+  console.log("Props.widget is: ", props.widget);
+  
   useEffect(() => {
-    setInputs(propArray[0]);
+    setInputs(props.widget);
   }, []);
 
   const handleChange = (event) => {
@@ -37,14 +37,14 @@ const EditWidget = (props) => {
         />
         <br />
 
-        <label htmlFor="type">Type</label>
-        <input
-          className="input"
-          type="text"
-          value={inputs.type}
-          name="type"
-          onChange={handleChange}
-        />
+        <label htmlFor="type">Choose a Type:</label>
+        <select className="input" name="type" id="type" onChange={handleChange}>
+          <option>Select a Type from dropdown</option>
+          <option value="CPU">CPU</option>
+          <option value="Motherboard">Motherboard</option>
+          <option value="RAM">RAM</option>
+          <option value="Graphics Card">Graphics Card</option>
+        </select>
         <br />
 
         <label htmlFor="quantity">Quantity</label>

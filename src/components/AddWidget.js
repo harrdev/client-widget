@@ -17,6 +17,8 @@ const AddWidget = (props) => {
     alert("Widget added");
   };
 
+  //******** To get field from backend, API call to server and .map through the "types" and pass data to <select> input below *********/
+
   return (
     <div className="addForm">
       <form onSubmit={handleSubmit}>
@@ -30,14 +32,14 @@ const AddWidget = (props) => {
         />
         <br />
 
-        <label htmlFor="type">Type</label>
-        <input
-          className="input"
-          type="text"
-          id="type"
-          name="type"
-          onChange={handleChange}
-        />
+        <label htmlFor="type">Choose a Type:</label>
+        <select className="input" name="type" id="type" onChange={handleChange}>
+          <option>Select a Type from dropdown</option>
+          <option value="CPU">CPU</option>
+          <option value="Motherboard">Motherboard</option>
+          <option value="RAM">RAM</option>
+          <option value="Graphics Card">Graphics Card</option>
+        </select>
         <br />
 
         <label htmlFor="quantity">Quantity</label>

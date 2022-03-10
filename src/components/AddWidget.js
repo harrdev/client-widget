@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addWidget } from "../api/widgets";
 
 const AddWidget = (props) => {
-    console.log("addwidget props: ", props)
+  console.log("addwidget props: ", props);
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -66,6 +66,16 @@ const AddWidget = (props) => {
           type="text"
           id="manufacturer"
           name="manufacturer"
+          onChange={handleChange}
+        />
+        <br />
+
+        <label htmlFor="madeAt">Created at:</label>
+        <input
+          className="input"
+          type="datetime-local"
+          id="madeAt"
+          name="madeAt"
           onChange={handleChange}
         />
         <br />

@@ -5,6 +5,5 @@
 
 # Features to implement
     * Search field to sort by type/etc?
-    * UTC timezone conversion and display
     * Rich text field
     * Proper readme with instructions on starting the app

@@ -14,6 +14,8 @@ export const getWidgets = (res) => {
 
 export const addWidget = (info) => {
   console.log("addWidget client API hit: ", info);
+  console.log("datetime: ", info.created)
+  console.log("Type datetime is: ", typeof(info.created))
   return axios({
     method: "POST",
     url: `http://localhost:8000/Widgets`,
@@ -24,6 +26,7 @@ export const addWidget = (info) => {
         quantity: info.quantity,
         cost: info.cost,
         manufacturer: info.manufacturer,
+        madeAt: info.madeAt,
         notes: info.notes,
       },
     },

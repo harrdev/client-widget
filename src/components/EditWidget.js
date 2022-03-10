@@ -77,6 +77,16 @@ const EditWidget = (props) => {
         />
         <br />
 
+        <label htmlFor="madeAt">Created at:</label>
+        <input
+          className="input"
+          type="datetime-local"
+          id="madeAt"
+          name="madeAt"
+          onChange={handleChange}
+        />
+        <br />
+
         <label htmlFor="notes">Notes</label>
         <textarea
           className="input"

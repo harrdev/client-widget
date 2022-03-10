@@ -24,6 +24,7 @@ const WidgetDetails = ({ widgets }) => {
       <p>Quantity: {w.quantity}</p>
       <p>Cost: {w.cost}</p>
       <p>Manufacturer: {w.manufacturer}</p>
+      <p>Created At: {w.madeAt}</p>
       <p>Notes: {w.notes}</p>
     </div>
   );

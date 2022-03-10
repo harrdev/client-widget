@@ -14,7 +14,7 @@ const AddWidget = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addWidget(inputs);
-    alert("Widget added to your favorites");
+    alert("Widget added");
   };
 
   return (
@@ -90,7 +90,7 @@ const AddWidget = (props) => {
         />
         <br />
 
-        <input onClick={props.addClick} type="submit" value="Add a Widget" />
+        <input type="submit" value="Add a Widget" />
       </form>
     </div>
   );

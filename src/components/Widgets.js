@@ -14,6 +14,7 @@ const Widgets = (props) => {
     });
     setAllWidgets(widgetArray);
   }, [widgets]);
+  
   // Remove Widget function that updates allWidgets state upon deletion
   const removeWidget = (widget) => {
     deleteWidget(widget._id).then((res) => {

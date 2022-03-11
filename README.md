@@ -1,8 +1,8 @@
-# Outstanding Issues
-    * Convert to Typescript
-    * Not updating state/rendering when adding new widget
-    * HTML input for datetime storing as UTC is deprecated.  Now only stores local date/time without the time zone.
+# Getting Started
+1. Clone Repo
+2. Command: npm i
+* Client runs on localhost:3000
 
-# Features to implement
-    * Rich text field
-    * Proper readme with instructions on starting the app
+## Client Information
+* Uses TinyMCE NPM Package for rich text field for form
+* Uses AXIOS NPM Package for API calls

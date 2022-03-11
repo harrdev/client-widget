@@ -30,7 +30,7 @@ const Widgets = (props) => {
         .catch((error) => {});
     });
   };
-
+  // Work in progress callback function to update state and re-render widgets with new widget
   const updateState = (addedWidget) => {
     getWidgets()
       .then((res) => {

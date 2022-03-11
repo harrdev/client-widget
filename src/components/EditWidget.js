@@ -14,12 +14,12 @@ const EditWidget = (props) => {
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
-
+  // handleText event handler to pull in from TinyMCE rich tech field.  Needs separate handler from other fields due to how this field works.
   const handleText = (event) => {
     const value = event;
     setInputs({...inputs, notes: value });
   };
-
+  // handleSubmit event handler to pass data to editWidget API call, passing inputs state and id of selected widget
   const handleSubmit = (event) => {
     event.preventDefault();
     editWidget(inputs, id);

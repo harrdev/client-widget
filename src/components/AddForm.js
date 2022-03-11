@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { addWidget } from "../api/widgets";
 import { Editor } from "@tinymce/tinymce-react";
+import { useNavigate } from "react-router";
 
 const AddForm = (props) => {
-  console.log("Props are: ", props);
   const [inputs, setInputs] = useState({});
+  let navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -27,7 +28,7 @@ const AddForm = (props) => {
 
   return (
     <div className="addForm">
-      <form onSubmit={handleSubmit} onClick={props.addClick}>
+      <form onSubmit={handleSubmit} >
         <label htmlFor="name">Name</label>
         <input
           className="input"
@@ -115,7 +116,7 @@ const AddForm = (props) => {
           onEditorChange={handleText}
         />
 
-        <input type="submit" value="Add a Widget" onClick={props.addClick} />
+        <input type="submit" value="Add a Widget" />
       </form>
     </div>
   );

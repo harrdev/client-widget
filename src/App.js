@@ -20,7 +20,7 @@ function App() {
     axios.get(database).then((res) => {
       let widgetArray = [];
       res.data.widget.map((w) => {
-        widgetArray.push(w);
+        return widgetArray.push(w);
       });
       setWidget(widgetArray);
     });

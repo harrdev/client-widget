@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import AddWidget from "./archive/AddWidget";
 import { getWidgets, deleteWidget } from "../api/widgets";
 import { useEffect, useState } from "react";
 import AddForm from "./AddForm";
@@ -32,6 +31,20 @@ const Widgets = (props) => {
     });
   };
 
+  const updateState = (addedWidget) => {
+    getWidgets()
+      .then((res) => {
+        let widgetsArray = [];
+        res.data.widget.map((widget) => {
+          return widgetsArray.push(widget);
+        });
+        setAllWidgets(widgetsArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const showAllWidgets = allWidgets.map((widget, i) => {
     return (
       <li key={i}>
@@ -60,7 +73,7 @@ const Widgets = (props) => {
       <h1>Widgets</h1>
       <button onClick={props.addClick}>Add Widget</button>
       <div className="addWidget">
-        {props.addButtonClick && <AddForm props={props} />}
+        {props.addButtonClick && <AddForm props={props} update={updateState} />}
       </div>
       <div className="allWidgets">
         <ul>{showAllWidgets}</ul>

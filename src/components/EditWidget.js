@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { editWidget } from "../api/widgets";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
 
 const EditWidget = (props) => {
   const [inputs, setInputs] = useState({});
@@ -12,6 +13,11 @@ const EditWidget = (props) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleText = (event) => {
+    const value = event;
+    setInputs({...inputs, notes: value });
   };
 
   const handleSubmit = (event) => {
@@ -28,7 +34,7 @@ const EditWidget = (props) => {
         <input
           className="input"
           type="text"
-          value={inputs.name}
+          id="name"
           name="name"
           onChange={handleChange}
         />
@@ -37,12 +43,12 @@ const EditWidget = (props) => {
         <label htmlFor="type">Choose a Type:</label>
         <select
           className="input"
+          type="select"
           name="type"
           id="type"
-          type="select"
           onChange={handleChange}
         >
-          <option>Select a Type from dropdown</option>
+          <option>Select a Type</option>
           <option value="CPU">CPU</option>
           <option value="Motherboard">Motherboard</option>
           <option value="RAM">RAM</option>
@@ -54,7 +60,7 @@ const EditWidget = (props) => {
         <input
           className="input"
           type="number"
-          value={inputs.quantity}
+          id="quantity"
           name="quantity"
           onChange={handleChange}
         />
@@ -64,7 +70,7 @@ const EditWidget = (props) => {
         <input
           className="input"
           type="text"
-          value={inputs.cost}
+          id="cost"
           name="cost"
           onChange={handleChange}
         />
@@ -74,7 +80,7 @@ const EditWidget = (props) => {
         <input
           className="input"
           type="text"
-          value={inputs.manufacturer}
+          id="manufacturer"
           name="manufacturer"
           onChange={handleChange}
         />
@@ -91,14 +97,18 @@ const EditWidget = (props) => {
         <br />
 
         <label htmlFor="notes">Notes</label>
-        <textarea
-          className="input"
+        <Editor
           type="text"
-          value={inputs.notes}
+          id="notes"
           name="notes"
-          onChange={handleChange}
+          value={inputs.notes}
+          init={{
+            height: 200,
+            width: 400,
+            menubar: false,
+          }}
+          onEditorChange={handleText}
         />
-        <br />
 
         <input type="submit" value="Edit Widget" />
       </form>

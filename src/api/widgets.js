@@ -13,6 +13,7 @@ export const getWidgets = (res) => {
 };
 
 export const addWidget = (info) => {
+  console.log("This is the data being sent to the server to POST: ", info)
   return axios({
     method: "POST",
     url: `http://localhost:8000/Widgets`,

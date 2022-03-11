@@ -28,9 +28,10 @@ function App() {
   // Work in progress, logic to show/hide edit/add forms based on submit button being clicked
   const addClick = () => {
     if (!addButtonClick) {
-      console.log("addClick fired")
+      console.log("addClick Show Form");
       setAddButtonClick(true);
     } else {
+      console.log("addClick Hide Form");
       setAddButtonClick(false);
     }
   };
@@ -49,7 +50,17 @@ function App() {
             />
           }
         />
-        <Route path="/:id" element={<ShowWidget widgets={widget} />} />
+        <Route
+          path="/:id"
+          element={
+            <ShowWidget
+              widgets={widget}
+              addClick={addClick}
+              addButtonClick={addButtonClick}
+              setAddButtonClick={setAddButtonClick}
+            />
+          }
+        />
       </Routes>
     </Fragment>
   );

@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EditWidget from "../components/EditWidget";
 
-const WidgetDetails = ({ widgets }) => {
+const WidgetDetails = (props) => {
+  const { widgets } = props
   const thisWidget = useParams();
-  const [myLocalTime, setMyLocalTime] = useState({});
   // Filter useParams data to equal database widget data
   const widgetData = widgets.filter((widget) => widget.name === thisWidget.id);
   const w = widgetData[0];
@@ -15,8 +14,8 @@ const WidgetDetails = ({ widgets }) => {
   return (
     <div className="container">
       <div className="editForm">
-        <h2>Edit Widget</h2>
-        <EditWidget widget={w} />
+        <button onClick={props.addClick}>Edit Widget</button>
+        {props.addButtonClick && <EditWidget widget={w} />}
       </div>
       <p>Updated at: {time}</p>
       <p>Name: {w.name}</p>

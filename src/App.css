@@ -29,3 +29,16 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+button {
+  background-color: lightgreen;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}

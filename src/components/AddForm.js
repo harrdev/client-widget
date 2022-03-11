@@ -14,13 +14,12 @@ const AddForm = (props) => {
 
   const handleText = (event) => {
     const value = event;
-    setInputs({ notes: value });
+    setInputs({...inputs, notes: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addWidget(inputs);
-
     alert("Widget added");
   };
 
@@ -28,7 +27,7 @@ const AddForm = (props) => {
 
   return (
     <div className="addForm">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onClick={props.addClick}>
         <label htmlFor="name">Name</label>
         <input
           className="input"

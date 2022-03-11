@@ -35,7 +35,13 @@ const EditWidget = (props) => {
         <br />
 
         <label htmlFor="type">Choose a Type:</label>
-        <select className="input" name="type" id="type" onChange={handleChange}>
+        <select
+          className="input"
+          name="type"
+          id="type"
+          type="select"
+          onChange={handleChange}
+        >
           <option>Select a Type from dropdown</option>
           <option value="CPU">CPU</option>
           <option value="Motherboard">Motherboard</option>

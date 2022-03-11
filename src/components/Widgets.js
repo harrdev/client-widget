@@ -59,7 +59,9 @@ const Widgets = (props) => {
     <div className="container">
       <h1>Widgets</h1>
       <button onClick={props.addClick}>Add Widget</button>
-      <div className="addWidget">{props.addButtonClick && <AddForm props={props} />}</div>
+      <div className="addWidget">
+        {props.addButtonClick && <AddForm props={props} />}
+      </div>
       <div className="allWidgets">
         <ul>{showAllWidgets}</ul>
       </div>

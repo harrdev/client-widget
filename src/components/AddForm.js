@@ -3,6 +3,7 @@ import { addWidget } from "../api/widgets";
 import { Editor } from "@tinymce/tinymce-react";
 
 const AddForm = (props) => {
+  console.log("Props are: ", props);
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -19,10 +20,11 @@ const AddForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addWidget(inputs);
+
     alert("Widget added");
   };
 
-  //******** To get field from backend, API call to server and .map through the "types" and pass data to <select> input below *********/
+  //******** To get field from backend, create function that does API call to server and .map through the "types" and pass data to <select><option value={type}> input below *********/
 
   return (
     <div className="addForm">
@@ -41,12 +43,13 @@ const AddForm = (props) => {
         <label htmlFor="type">Choose a Type:</label>
         <select
           className="input"
+          type="select"
           name="type"
           id="type"
           required
           onChange={handleChange}
         >
-          <option>Select a Type from dropdown</option>
+          <option>Select a Type</option>
           <option value="CPU">CPU</option>
           <option value="Motherboard">Motherboard</option>
           <option value="RAM">RAM</option>
@@ -113,7 +116,7 @@ const AddForm = (props) => {
           onEditorChange={handleText}
         />
 
-        <input type="submit" value="Add a Widget" />
+        <input type="submit" value="Add a Widget" onClick={props.addClick} />
       </form>
     </div>
   );

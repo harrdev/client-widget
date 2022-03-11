@@ -15,7 +15,7 @@ const Widgets = (props) => {
     });
     setAllWidgets(widgetArray);
   }, [widgets]);
-  
+
   // Remove Widget function that updates allWidgets state upon deletion
   const removeWidget = (widget) => {
     deleteWidget(widget._id).then((res) => {
@@ -57,11 +57,9 @@ const Widgets = (props) => {
 
   return (
     <div className="container">
-      <h1>Widgets Component</h1>
-      <div className="addWidget">
-        {/* <AddWidget props={props} /> */}
-        <AddForm props={props} />
-      </div>
+      <h1>Widgets</h1>
+      <button onClick={props.addClick}>Add Widget</button>
+      <div className="addWidget">{props.addButtonClick && <AddForm props={props} />}</div>
       <div className="allWidgets">
         <ul>{showAllWidgets}</ul>
       </div>

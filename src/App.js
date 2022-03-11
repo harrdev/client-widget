@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     getAllWidgets();
-  }, []);
+  }, [addButtonClick]);
 
   // API call to database to get all saved widgets and save to widget state to pass to children
   const getAllWidgets = () => {
@@ -25,7 +25,7 @@ function App() {
       setWidget(widgetArray);
     });
   };
-  // Work in progress, logic to show/hide edit/add forms
+  // Work in progress, logic to show/hide edit/add forms based on submit button being clicked
   const addClick = () => {
     if (!addButtonClick) {
       console.log("addClick fired")
